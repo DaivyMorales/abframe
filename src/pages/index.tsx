@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { HiMail } from "react-icons/hi";
 
-function index() {
+function Home() {
   const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,4 +38,4 @@ function index() {
   );
 }
 
-export default index;
+export default Home;
