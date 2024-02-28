@@ -1,11 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiMail } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import { useFormik } from "formik";
 import { api } from "@/utils/api";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 
 function Home() {
+  const [loadingRequest, setloadingRequest] = useState(false);
+  const [statusResponseWaitlist, setStatusResponseWaitlist] = useState(0);
   const divRef = useRef<HTMLDivElement>(null);
 
   const mutation = api.waitlist.create.useMutation();
@@ -19,14 +23,23 @@ function Home() {
       email: "",
     },
     onSubmit: async (values) => {
+      setloadingRequest(true);
       const response = await mutation.mutateAsync({
         email: values.email,
       });
+
+      if (response) {
+        setloadingRequest(false);
+        setStatusResponseWaitlist(200);
+      }
     },
   });
 
+  const { width, height } = useWindowSize();
+
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center  gap-8">
+    <div className="flex h-screen w-screen flex-col items-center justify-center gap-8">
+      {statusResponseWaitlist && <Confetti width={width} height={height} tweenDuration={200} gravity={0.3} />}
       <div className="flex flex-col items-center justify-center gap-1">
         <h1 className="text-center">
           Focus on Your Photos, <br /> not the Formatting
