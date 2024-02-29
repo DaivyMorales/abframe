@@ -26,5 +26,6 @@ input {
 }
 
 .focus-div:focus-within {
-  @apply outline outline-1 outline-gray-300;
+  @apply outline outline-1 outline-[#FFBE18];
 }
+
