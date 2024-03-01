@@ -78,7 +78,7 @@ function Home() {
             ref={divRef}
             className="focus-div flex w-[250px] items-center justify-center gap-2 rounded-md border-[1px] border-slate-600 px-3 py-3"
             style={
-              statusResponseWaitlist === 200 ? { borderColor: "#FFBE18" } : {}
+              statusResponseWaitlist === 200 ? { borderColor: "#17CF1D" } : {}
             }
           >
             <HiMail size={15} />
@@ -95,7 +95,7 @@ function Home() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
             type="submit"
-            className={`${statusResponseWaitlist === 200 ? "cursor-not-allowed bg-slate-500" : "bg-[#FFBE18]"} flex h-[50px] w-full items-center justify-center gap-3 rounded-md px-7 py-3 text-[15px] font-semibold text-[#141616] text-white shadow-sm`}
+            className={`${statusResponseWaitlist === 200 ? "cursor-not-allowed bg-slate-500" : "bg-[#17CF1D]"} flex h-[50px] w-full items-center justify-center gap-3 rounded-md px-7 py-3 text-[15px] font-semibold text-[#141616] text-white shadow-sm`}
             disabled={statusResponseWaitlist === 200}
           >
             {loadingRequest ? (
@@ -125,7 +125,7 @@ function Home() {
           </Link>
           <div className="flex flex-col items-start justify-start">
             {statusResponseWaitlist === 200 ? (
-              <p className="bg-amber-900">Thaaaaanks youuuu 🎉</p>
+              <p className="bg-lime-900">Thaaaaanks youuuu 🎉</p>
             ) : (
               <p>Developed by Joao</p>
             )}
