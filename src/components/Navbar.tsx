@@ -6,9 +6,9 @@ interface NavbarProps {
 
 function Navbar({ children }: NavbarProps) {
   return (
-    <>
+    <div className="lg:px-32">
       {children}
-    </>
+    </div>
   );
 }
 
