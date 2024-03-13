@@ -166,7 +166,7 @@ function Home() {
             </section>
           </div>
           {isDesktop && (
-            <div className="absolute -bottom-10 flex flex-col items-center justify-center gap-2">
+            <div className="absolute -bottom-32 sm:-bottom-10 flex flex-col items-center justify-center gap-2">
               <p className="text-sm font-semibold">Look an example!</p>
               <HiOutlineChevronDoubleDown size={30} />
             </div>
