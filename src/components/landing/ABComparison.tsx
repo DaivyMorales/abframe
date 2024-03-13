@@ -5,7 +5,7 @@ import { FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 
 function ABComparison() {
   return (
-    <div className="comparison-container flex h-screen flex-col items-center justify-center">
+    <div className="comparison-container flex h-screen flex-col items-center justify-center p-5">
       <div className="relative grid grid-cols-3 w-[600px] gap-4 rounded-xl border-[1px] border-neutral-700 bg-[#212121] p-10 shadow-xl">
         <div className="absolute left-3 top-3 rounded-full border-[1px] border-neutral-700 px-[10px] py-1">
           <h2 className="text-xs font-semibold">1</h2>

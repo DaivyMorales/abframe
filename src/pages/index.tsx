@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { HiMail, HiCheck } from "react-icons/hi";
+import { HiMail, HiCheck, HiOutlineChevronDoubleDown } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import { useFormik } from "formik";
@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { CgSpinner } from "react-icons/cg";
 import Head from "next/head";
 import ABComparison from "@/components/landing/ABComparison";
+import { useMediaQuery } from "react-responsive";
 
 function Home() {
   const [loadingRequest, setloadingRequest] = useState(false);
@@ -23,6 +24,8 @@ function Home() {
   useEffect(() => {
     divRef.current!.focus();
   }, []);
+
+  const isDesktop = useMediaQuery({ maxWidth: 1280 });
 
   const formik = useFormik({
     initialValues: {
@@ -58,7 +61,7 @@ function Home() {
         <title>ABFrame - Waitlist</title>
       </Head>
 
-      <div className="grid min-h-full w-full grid-cols-2 flex-col  gap-8 bg-[#1D1D1D]">
+      <div className="grid min-h-full w-full grid-cols-1 flex-col gap-8  bg-[#1D1D1D] xl:grid-cols-2">
         {statusResponseWaitlist === 200 && !errorMessage ? (
           <Confetti
             width={width}
@@ -69,7 +72,7 @@ function Home() {
         ) : (
           ""
         )}
-        <div className="flex h-full flex-col items-center justify-center gap-8 px-5">
+        <div className="flex h-full h-screen flex-col items-center justify-center gap-8 px-5">
           <div className="flex flex-col items-center justify-center gap-1">
             <h1 className="text-center">
               Focus on your photos, <br /> not the formatting
@@ -162,6 +165,12 @@ function Home() {
               </div>
             </section>
           </div>
+          {isDesktop && (
+            <div className="absolute -bottom-10 flex flex-col items-center justify-center gap-2">
+              <p className="text-sm font-semibold">Look an example!</p>
+              <HiOutlineChevronDoubleDown size={30} />
+            </div>
+          )}
         </div>
         <div>
           <ABComparison />

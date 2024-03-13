@@ -30,8 +30,8 @@ input {
 }
 
 .comparison-container {
-  background: radial-gradient(circle at bottom ,#303030, #303030 10%,transparent 10%, transparent 20%, #303030 20%, #303030 30%, transparent 30%, transparent 40%, #303030 40%, #303030 50%, transparent 50%, transparent 60%, #303030 60%, #303030 70%, transparent 70%, transparent 80%, #303030 80%, #303030 90%, transparent 90%);
+  background: radial-gradient(circle at bottom ,#e6e6e6, #e6e6e6 10%,transparent 10%, transparent 20%, #e6e6e6 20%, #e6e6e6 30%, transparent 30%, transparent 40%, #e6e6e6 40%, #e6e6e6 50%, transparent 50%, transparent 60%, #e6e6e6 60%, #e6e6e6 70%, transparent 70%, transparent 80%, #e6e6e6 80%, #e6e6e6 90%, transparent 90%);
         background-size: 3em 3em;
-        background-color: #047857;
+        background-color: #D1FAE5;
         opacity: 1
 }
