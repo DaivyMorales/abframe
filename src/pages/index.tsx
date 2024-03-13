@@ -15,6 +15,7 @@ function Home() {
   const [loadingRequest, setloadingRequest] = useState(false);
   const [statusResponseWaitlist, setStatusResponseWaitlist] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  console.log(errorMessage);
   const divRef = useRef<HTMLDivElement>(null);
 
   const mutation = api.waitlist.create.useMutation();
@@ -42,7 +43,7 @@ function Home() {
         setloadingRequest(false);
         setStatusResponseWaitlist(500);
 
-        if (error.message.includes("Email alredy exists")) {
+        if (error.message.includes("Email already exists")) {
           setErrorMessage("Email already exists, please use a different email");
         }
       }
@@ -58,7 +59,7 @@ function Home() {
       </Head>
 
       <div className="grid min-h-full w-full grid-cols-2 flex-col  gap-8 bg-[#1D1D1D]">
-        {statusResponseWaitlist ? (
+        {statusResponseWaitlist === 200 && !errorMessage ? (
           <Confetti
             width={width}
             height={height}
@@ -91,18 +92,27 @@ function Home() {
                 style={
                   statusResponseWaitlist === 200
                     ? { borderColor: "#059669" }
-                    : {}
+                    : errorMessage
+                      ? { borderColor: "red" }
+                      : {}
                 }
               >
                 <HiMail size={15} />
                 <input
                   name="email"
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    formik.setFieldValue("email", e.target.value);
+                    setErrorMessage("");
+                  }}
                   type="email"
                   placeholder="youremail@abframe.com"
                   className="placeholder:text-slate-500"
                 />
               </div>
+              {errorMessage && (
+                <p className="text-xs text-red-500">{errorMessage}</p>
+              )}
+
               <motion.button
                 initial={{ scale: 1 }}
                 whileHover={{ scale: 1.1 }}
