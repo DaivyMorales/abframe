@@ -1,14 +1,21 @@
 import { useSidebar } from "@/store/SidebarStore";
 
 function Sidebar() {
-  const { alignment, setAlignment, letters, setLetters } = useSidebar();
+  const {
+    alignment,
+    setAlignment,
+    letters,
+    setLetters,
+    separation,
+    setSeparation,
+  } = useSidebar();
 
   const buttonActiveStyle = "border-emerald-500 text-emerald-300";
 
   return (
     <div className="h-full w-[350px] bg-[#242424] p-5">
       <div className="flex flex-col items-start justify-start gap-3">
-        <h3>Alignment</h3>
+        <h4>Alignment</h4>
         <div className="flex gap-2">
           <button
             onClick={() => setAlignment("flex")}
@@ -28,19 +35,47 @@ function Sidebar() {
           </button>
         </div>
         {/* LETTERS */}
-        <h3>Letters</h3> 
+        <h4>Letters</h4>
         <div className="flex gap-2">
           <button
             onClick={() => setLetters(false)}
             className={`${!letters ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] items-center justify-center gap-1 rounded-xl border-[1px] `}
           >
-            <div className={`${!letters ? 'bg-emerald-600' : 'bg-neutral-700' } h-full w-[2px] -rotate-45 `}></div>
+            <div
+              className={`${!letters ? "bg-emerald-600" : "bg-neutral-700"} h-full w-[2px] -rotate-45 `}
+            ></div>
           </button>
           <button
             onClick={() => setLetters(true)}
             className={`${letters ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
           >
             <p className="text-alignment-button">ab</p>
+          </button>
+        </div>
+        {/* SEPARATION */}
+        <h4>Separation</h4>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setSeparation("not")}
+            className={`${separation === "not" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] items-center justify-center gap-1 rounded-xl border-[1px] `}
+          >
+            <div
+              className={`${separation === "not" ? "bg-emerald-600" : "bg-neutral-700"} h-full w-[2px] -rotate-45 `}
+            ></div>
+          </button>
+          <button
+            onClick={() => setSeparation("bar")}
+            className={`${separation === "bar" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] items-center justify-center gap-1 rounded-xl border-[1px] `}
+          >
+            <div
+              className={`${separation === "bar" ? "bg-emerald-600" : "bg-neutral-700"} h-full w-[2px]  `}
+            ></div>
+          </button>
+          <button
+            onClick={() => setSeparation("or")}
+            className={`${separation === "or" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+          >
+            <p className="text-alignment-button">or</p>
           </button>
         </div>
       </div>

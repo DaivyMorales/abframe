@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 function CreatePage() {
-  const { alignment, letters } = useSidebar();
+  const { alignment, letters, separation } = useSidebar();
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -15,7 +15,6 @@ function CreatePage() {
           <motion.div
             animate={alignment === "flex" ? { scale: 0.9 } : { scale: 1 }}
             className={`${alignment} items-center justify-center gap-3 rounded-xl bg-white p-4 shadow-lg`}
-            
           >
             <div className="flex h-[200px] w-[200px] flex-col items-center justify-center gap-3 rounded-xl">
               <motion.img
@@ -40,10 +39,20 @@ function CreatePage() {
                 )}
               </AnimatePresence>
             </div>
-            {/* <div
-                className={` rounded-full bg-neutral-500 ${alignment === "flex" ? "h-[60px] w-[2px]" : "h-[2px] w-[80px]"}`}
-              /> */}
-            <h3>or</h3>
+            {separation === "or" ? (
+              <motion.h3 initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                or
+              </motion.h3>
+            ) : separation === "bar" ? (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className={` rounded-full bg-neutral-300 ${alignment === "flex" ? "h-[60px] w-[2px]" : "h-[2px] w-[80px]"}`}
+              />
+            ) : (
+              <></>
+            )}
+
             <div className="flex h-[200px] w-[200px] flex-col items-center justify-center gap-3 rounded-xl">
               <motion.img
                 src="https://i.scdn.co/image/ab67616d00001e024718e2b124f79258be7bc452"

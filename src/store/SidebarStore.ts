@@ -6,6 +6,9 @@ export interface AlignmentStore {
 
   letters: boolean;
   setLetters: (value: boolean) => void;
+
+  separation: string;
+  setSeparation: (value: string) => void;
 }
 
 export const useSidebar = create<AlignmentStore>((set) => ({
@@ -16,5 +19,9 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   letters: false,
   setLetters: (value: boolean) => {
     set(() => ({ letters: value }));
+  },
+  separation: "",
+  setSeparation: (value: string) => {
+    set(() => ({ separation: value }));
   },
 }));
