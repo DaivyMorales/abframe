@@ -12,7 +12,7 @@ export interface AlignmentStore {
 }
 
 export const useSidebar = create<AlignmentStore>((set) => ({
-  alignment: "",
+  alignment: "flex",
   setAlignment: (values: string) => {
     set(() => ({ alignment: values }));
   },
@@ -20,7 +20,7 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   setLetters: (value: boolean) => {
     set(() => ({ letters: value }));
   },
-  separation: "",
+  separation: "not",
   setSeparation: (value: string) => {
     set(() => ({ separation: value }));
   },

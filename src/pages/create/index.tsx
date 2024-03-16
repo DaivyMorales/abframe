@@ -17,40 +17,44 @@ function CreatePage() {
   return (
     <div className="flex h-screen w-screen items-center justify-between">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3">
-        <div className=" justify-center gap-4">
+        <div className="justify-center gap-4">
           <motion.div
             animate={alignment === "flex" ? { scale: 0.9 } : { scale: 1 }}
-            className={`${alignment} items-center justify-center gap-3 rounded-xl bg-white p-4 shadow-lg`}
+            className={`${alignment} items-center justify-center gap-3 rounded-xl bg-white p-10 shadow-lg`}
           >
             <div
               onMouseEnter={() => setOnHoverA(true)}
               onMouseLeave={() => setOnHoverA(loadingImage ? true : false)}
-              className="flex h-[200px] w-[200px] flex-col items-center justify-center gap-3 rounded-xl"
+              className="flex min-h-[200px] min-w-[200px] flex-col  items-center justify-center gap-4 p-8"
             >
-              <motion.img
-                src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
-                className="h-[100px] w-[100px] rounded-xl shadow-lg"
-                alt="Example image"
-                layout
-              />
-              {aColumnImages.map((aCol) => (
+              <div
+                className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"}  items-center justify-center gap-3 rounded-xl`}
+              >
                 <motion.img
-                  key={aCol}
-                  src={aCol}
-                  alt="Example image"
+                  src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
                   className="h-[100px] w-[100px] rounded-xl shadow-lg"
+                  alt="Example image"
                   layout
                 />
-              ))}
+                {aColumnImages.map((aCol) => (
+                  <motion.img
+                    key={aCol}
+                    src={aCol}
+                    alt="Example image"
+                    className="h-[100px] w-[100px] rounded-xl shadow-lg"
+                    layout
+                  />
+                ))}
 
-              {onHoverA && (
-                <ButtonAddImage
-                  loadingImage={loadingImage}
-                  setLoadingImage={setLoadingImage}
-                  setOnHover={setOnHoverA}
-                  columnName="a"
-                />
-              )}
+                {onHoverA && (
+                  <ButtonAddImage
+                    loadingImage={loadingImage}
+                    setLoadingImage={setLoadingImage}
+                    setOnHover={setOnHoverA}
+                    columnName="a"
+                  />
+                )}
+              </div>
               <AnimatePresence mode="popLayout">
                 {letters ? (
                   <motion.p
@@ -84,33 +88,37 @@ function CreatePage() {
             <div
               onMouseEnter={() => setOnHoverB(true)}
               onMouseLeave={() => setOnHoverB(loadingImage ? true : false)}
-              className="flex h-[200px] w-[200px] flex-col items-center justify-center gap-3 rounded-xl"
+              className="flex min-h-[200px] min-w-[200px] flex-col  items-center justify-center gap-4 p-8"
             >
-              <motion.img
-                src="https://i.scdn.co/image/ab67616d00001e024718e2b124f79258be7bc452"
-                alt="Example image"
-                className="h-[100px] w-[100px] rounded-xl shadow-lg"
-                layout
-              />
-
-              {bColumnImages.map((bCol) => (
+              <div
+                className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"}  items-center justify-center gap-3 rounded-xl`}
+              >
                 <motion.img
-                  key={bCol}
-                  src={bCol}
+                  src="https://i.scdn.co/image/ab67616d00001e024718e2b124f79258be7bc452"
                   alt="Example image"
                   className="h-[100px] w-[100px] rounded-xl shadow-lg"
                   layout
                 />
-              ))}
 
-              {onHoverB && (
-                <ButtonAddImage
-                  loadingImage={loadingImage}
-                  setLoadingImage={setLoadingImage}
-                  setOnHover={setOnHoverB}
-                  columnName="b"
-                />
-              )}
+                {bColumnImages.map((bCol) => (
+                  <motion.img
+                    key={bCol}
+                    src={bCol}
+                    alt="Example image"
+                    className="h-[100px] w-[100px] rounded-xl shadow-lg"
+                    layout
+                  />
+                ))}
+
+                {onHoverB && (
+                  <ButtonAddImage
+                    loadingImage={loadingImage}
+                    setLoadingImage={setLoadingImage}
+                    setOnHover={setOnHoverB}
+                    columnName="b"
+                  />
+                )}
+              </div>
               <AnimatePresence mode="popLayout">
                 {letters ? (
                   <motion.p
