@@ -77,6 +77,12 @@ function Sidebar() {
           >
             <p className="text-alignment-button">or</p>
           </button>
+          <button
+            onClick={() => setSeparation("vs")}
+            className={`${separation === "vs" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+          >
+            <p className="text-alignment-button">vs</p>
+          </button>
         </div>
       </div>
     </div>

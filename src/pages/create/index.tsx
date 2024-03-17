@@ -81,6 +81,10 @@ function CreatePage() {
                 animate={{ scale: 1 }}
                 className={` rounded-full bg-neutral-300 ${alignment === "flex" ? "h-[60px] w-[2px]" : "h-[2px] w-[80px]"}`}
               />
+            ) : separation === "vs" ? (
+              <motion.h3 initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                vs
+              </motion.h3>
             ) : (
               <></>
             )}
