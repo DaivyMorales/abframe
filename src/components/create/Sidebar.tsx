@@ -1,7 +1,8 @@
 import { useSidebar } from "@/store/SidebarStore";
 import { ChangeEvent, useRef, useEffect, useState } from "react";
-import { HiOutlineUser } from "react-icons/hi";
+import { HiOutlineUser, HiMenuAlt2, HiMenu, HiMenuAlt3 } from "react-icons/hi";
 import { useSession } from "next-auth/react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Sidebar() {
   const {
@@ -17,6 +18,8 @@ function Sidebar() {
     setFont,
     credit,
     setCredit,
+    creditAlignment,
+    setCreditAlignment,
   } = useSidebar();
 
   const [errorTitleLenght, setErrorTitleLenght] = useState(false);
@@ -25,9 +28,9 @@ function Sidebar() {
 
   const { data: session, status } = useSession();
 
-  useEffect(() => {
-    divRef.current!.focus();
-  }, []);
+  // useEffect(() => {
+  //   divRef.current!.focus();
+  // }, []);
 
   const buttonActiveStyle = "border-emerald-500 text-emerald-300";
 
@@ -160,7 +163,7 @@ function Sidebar() {
           </div>
           {/* CREDITS */}
           <h4>Credits</h4>
-          <div className="flex gap-2">
+          <div className="flex items-center justify-start gap-2">
             <button
               onClick={() => setCredit(false)}
               className={`${!credit ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex h-[27px] w-[50px] items-center justify-center gap-1 rounded-xl border-[1px]`}
@@ -180,6 +183,43 @@ function Sidebar() {
                 <HiOutlineUser />
               </div>
             </button>
+            {credit && (
+              <>
+                <div className="h-[10px] w-[1px] bg-slate-600" />
+                <div className="flex items-center justify-start gap-1">
+                  <button
+                    onClick={() => setCreditAlignment("start")}
+                    className={`${creditAlignment === "start" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex h-[27px] w-[30px] items-center justify-center gap-1 rounded-xl border-[1px]`}
+                  >
+                    <div
+                      className={`${creditAlignment === "start" ? "text-emerald-300" : "text-neutral-700"} `}
+                    >
+                      <HiMenuAlt2 />
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setCreditAlignment("center")}
+                    className={`${creditAlignment === "center" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex h-[27px] w-[30px] items-center justify-center gap-1 rounded-xl border-[1px]`}
+                  >
+                    <div
+                      className={`${creditAlignment === "center" ? "text-emerald-300" : "text-neutral-700"} `}
+                    >
+                      <HiMenu />
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setCreditAlignment("end")}
+                    className={`${creditAlignment === "end" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex h-[27px] w-[30px] items-center justify-center gap-1 rounded-xl border-[1px]`}
+                  >
+                    <div
+                      className={`${creditAlignment === "end" ? "text-emerald-300" : "text-neutral-700"} `}
+                    >
+                      <HiMenuAlt3 />
+                    </div>
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -8,7 +8,15 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 function CreatePage() {
-  const { alignment, letters, separation, title, font, credit } = useSidebar();
+  const {
+    alignment,
+    letters,
+    separation,
+    title,
+    font,
+    credit,
+    creditAlignment,
+  } = useSidebar();
   const { aColumnImages, bColumnImages } = useImage();
 
   const [onHoverA, setOnHoverA] = useState(false);
@@ -148,12 +156,12 @@ function CreatePage() {
             <AnimatePresence>
               {status === "authenticated" && credit && (
                 <motion.div
-                  initial={{ scale: 0 }}
+                  initial={{ scale: 0.8 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0 }}
-                  className="flex w-full justify-center"
+                  className={`flex w-full justify-${creditAlignment} items-center`}
                 >
-                  <div className=" flex items-center justify-center gap-1 rounded-lg border-[1px] border-neutral-100 p-1">
+                  <div className="flex items-center justify-center gap-1 rounded-lg border-[1px] border-neutral-100 p-1">
                     <img
                       src="https://pbs.twimg.com/profile_images/1760288011378446336/JoHs9jPA_400x400.jpg"
                       alt="User image"

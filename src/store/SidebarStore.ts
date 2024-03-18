@@ -18,6 +18,9 @@ export interface AlignmentStore {
 
   credit: boolean;
   setCredit: (value: boolean) => void;
+
+  creditAlignment: string;
+  setCreditAlignment: (value: string) => void;
 }
 
 export const useSidebar = create<AlignmentStore>((set) => ({
@@ -44,5 +47,9 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   credit: false,
   setCredit: (value: boolean) => {
     set(() => ({ credit: value }));
+  },
+  creditAlignment: "center",
+  setCreditAlignment: (value: string) => {
+    set(() => ({ creditAlignment: value }));
   },
 }));
