@@ -33,7 +33,7 @@ input {
 }
 
 .focus-div:focus-within {
-  @apply outline outline-1 outline-[#17CF1D];
+  @apply outline outline-1 outline-emerald-500;
 }
 
 /* Other class */

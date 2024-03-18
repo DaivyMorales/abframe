@@ -9,6 +9,9 @@ export interface AlignmentStore {
 
   separation: string;
   setSeparation: (value: string) => void;
+
+  title: string;
+  setTitle: (value: string) => void;
 }
 
 export const useSidebar = create<AlignmentStore>((set) => ({
@@ -23,5 +26,9 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   separation: "not",
   setSeparation: (value: string) => {
     set(() => ({ separation: value }));
+  },
+  title: "",
+  setTitle: (value: string) => {
+    set(() => ({ title: value }));
   },
 }));

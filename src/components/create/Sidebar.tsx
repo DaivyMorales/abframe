@@ -1,4 +1,5 @@
 import { useSidebar } from "@/store/SidebarStore";
+import { ChangeEvent, useRef, useEffect } from "react";
 
 function Sidebar() {
   const {
@@ -8,9 +9,22 @@ function Sidebar() {
     setLetters,
     separation,
     setSeparation,
+    title,
+    setTitle,
   } = useSidebar();
 
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    divRef.current!.focus();
+  }, []);
+
   const buttonActiveStyle = "border-emerald-500 text-emerald-300";
+
+  const handleTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+    setTitle(inputValue);
+  };
 
   return (
     <div className="h-full w-[350px] bg-[#242424] p-5">
@@ -52,8 +66,8 @@ function Sidebar() {
             <p className="text-alignment-button">ab</p>
           </button>
         </div>
-        {/* SEPARATION */}
-        <h4>Separation</h4>
+        {/* SPACING */}
+        <h4>Spacing</h4>
         <div className="flex gap-2">
           <button
             onClick={() => setSeparation("not")}
@@ -83,6 +97,19 @@ function Sidebar() {
           >
             <p className="text-alignment-button">vs</p>
           </button>
+        </div>
+
+        {/* TITLE */}
+        <h4>Title</h4>
+        <div
+          ref={divRef}
+          className={`${title ? 'border-emerald-600' : 'border-neutral-600' } bg-[#303030] focus-div rounded-lg border-[1px]  px-3`}
+        >
+          <input
+            type="text"
+            className="text-[14px] font-light"
+            onChange={handleTitle}
+          />
         </div>
       </div>
     </div>
