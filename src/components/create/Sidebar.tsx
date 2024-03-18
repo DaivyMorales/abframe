@@ -93,18 +93,24 @@ function Sidebar() {
           <h4>Letters</h4>
           <div className="flex gap-2">
             <button
-              onClick={() => setLetters(false)}
-              className={`${!letters ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] items-center justify-center gap-1 rounded-xl border-[1px] `}
+              onClick={() => setLetters("not")}
+              className={`${letters === "not" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] items-center justify-center gap-1 rounded-xl border-[1px] `}
             >
               <div
-                className={`${!letters ? "bg-emerald-600" : "bg-neutral-700"} h-full w-[2px] -rotate-45 `}
+                className={`${letters === "not" ? "bg-emerald-600" : "bg-neutral-700"} h-full w-[2px] -rotate-45 `}
               ></div>
             </button>
             <button
-              onClick={() => setLetters(true)}
-              className={`${letters ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+              onClick={() => setLetters("ab")}
+              className={`${letters === "ab" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
             >
               <p className="text-alignment-button">ab</p>
+            </button>
+            <button
+              onClick={() => setLetters("12")}
+              className={`${letters === "12" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+            >
+              <p className="text-alignment-button">1 2</p>
             </button>
           </div>
           {/* SPACING */}

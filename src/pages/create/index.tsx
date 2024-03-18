@@ -43,12 +43,12 @@ function CreatePage() {
                 <div
                   className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"}  items-center justify-center gap-3 rounded-xl`}
                 >
-                  <motion.img
+                  {/* <motion.img
                     src="https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36"
                     className="h-[100px] w-[100px] rounded-xl shadow-lg"
                     alt="Example image"
                     layout
-                  />
+                  /> */}
                   {aColumnImages.map((aCol) => (
                     <motion.img
                       key={aCol}
@@ -69,7 +69,7 @@ function CreatePage() {
                   )}
                 </div>
                 <AnimatePresence mode="popLayout">
-                  {letters ? (
+                  {letters === "ab" ? (
                     <motion.p
                       key={1}
                       initial={{ scale: 0, opacity: 0 }}
@@ -78,6 +78,16 @@ function CreatePage() {
                       exit={{ opacity: 0, scale: 0 }}
                     >
                       A
+                    </motion.p>
+                  ) : letters === "12" ? (
+                    <motion.p
+                      key={1}
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                      exit={{ opacity: 0, scale: 0 }}
+                    >
+                      1
                     </motion.p>
                   ) : (
                     <></>
@@ -110,12 +120,12 @@ function CreatePage() {
                 <div
                   className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"}  items-center justify-center gap-3 rounded-xl`}
                 >
-                  <motion.img
+                  {/* <motion.img
                     src="https://i.scdn.co/image/ab67616d00001e024718e2b124f79258be7bc452"
                     alt="Example image"
                     className="h-[100px] w-[100px] rounded-xl shadow-lg"
                     layout
-                  />
+                  /> */}
 
                   {bColumnImages.map((bCol) => (
                     <motion.img
@@ -137,7 +147,7 @@ function CreatePage() {
                   )}
                 </div>
                 <AnimatePresence mode="popLayout">
-                  {letters ? (
+                  {letters === "ab" ? (
                     <motion.p
                       key={2}
                       initial={{ scale: 0, opacity: 0, rotate: "90deg" }}
@@ -146,6 +156,16 @@ function CreatePage() {
                       exit={{ opacity: 0, scale: 0 }}
                     >
                       B
+                    </motion.p>
+                  ) : letters === "12" ? (
+                    <motion.p
+                      key={2}
+                      initial={{ scale: 0, opacity: 0, rotate: "90deg" }}
+                      animate={{ scale: 1, opacity: 1, rotate: "0deg" }}
+                      transition={{ duration: 0.2 }}
+                      exit={{ opacity: 0, scale: 0 }}
+                    >
+                      2
                     </motion.p>
                   ) : (
                     <></>
