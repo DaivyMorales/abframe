@@ -1,5 +1,5 @@
 import { useSidebar } from "@/store/SidebarStore";
-import { ChangeEvent, useRef, useEffect } from "react";
+import { ChangeEvent, useRef, useEffect, useState } from "react";
 
 function Sidebar() {
   const {
@@ -13,6 +13,8 @@ function Sidebar() {
     setTitle,
   } = useSidebar();
 
+  const [errorTitleLenght, setErrorTitleLenght] = useState(false);
+
   const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,7 +25,13 @@ function Sidebar() {
 
   const handleTitle = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    setTitle(inputValue);
+
+    if (inputValue.length >= 40) {
+      setErrorTitleLenght(true);
+    } else {
+      setErrorTitleLenght(false);
+      setTitle(inputValue);
+    }
   };
 
   return (
@@ -101,15 +109,22 @@ function Sidebar() {
 
         {/* TITLE */}
         <h4>Title</h4>
-        <div
-          ref={divRef}
-          className={`${title ? 'border-emerald-600' : 'border-neutral-600' } bg-[#303030] focus-div rounded-lg border-[1px]  px-3`}
-        >
-          <input
-            type="text"
-            className="text-[14px] font-light"
-            onChange={handleTitle}
-          />
+        <div className="flex flex-col items-start justify-start gap-1">
+          <div
+            ref={divRef}
+            className={`${title ? (errorTitleLenght ? "border-red-500" : "border-emerald-600") : "border-neutral-600"} focus-div w-[200px] rounded-lg border-[1px] bg-[#303030] pl-3 pr-1`}
+          >
+            <input
+              type="text"
+              className={`${errorTitleLenght ? "text-red-400" : "text-white"} text-[14px] font-light`}
+              onChange={handleTitle}
+            />
+          </div>
+          {errorTitleLenght && (
+            <p className="text-[10px] font-light text-red-500">
+              The maximum length for the title is 40 characters.
+            </p>
+          )}
         </div>
       </div>
     </div>

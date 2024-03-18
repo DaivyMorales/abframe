@@ -33,7 +33,7 @@ input {
 }
 
 .focus-div:focus-within {
-  @apply outline outline-1 outline-emerald-500;
+  @apply border-[1px] border-emerald-600;
 }
 
 /* Other class */
