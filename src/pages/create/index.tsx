@@ -7,7 +7,7 @@ import { HiPlus } from "react-icons/hi";
 import ButtonAddImage from "@/components/create/ButtonAddImage";
 
 function CreatePage() {
-  const { alignment, letters, separation, title } = useSidebar();
+  const { alignment, letters, separation, title, font } = useSidebar();
   const { aColumnImages, bColumnImages } = useImage();
 
   const [onHoverA, setOnHoverA] = useState(false);
@@ -20,9 +20,9 @@ function CreatePage() {
         <div className="justify-center gap-4">
           <motion.div
             animate={alignment === "flex" ? { scale: 0.9 } : { scale: 1 }}
-            className="flex flex-col items-center justify-center rounded-xl bg-white p-10 shadow-lg"
+            className={`font-${font} flex flex-col items-center justify-center rounded-xl bg-white p-10 shadow-lg`}
           >
-            <h2 className="text-black">{title}</h2>
+            <h2 className={`text-black font-bold`}>{title}</h2>
             <div className={`${alignment} items-center justify-center gap-3 `}>
               <div
                 onMouseEnter={() => setOnHoverA(true)}

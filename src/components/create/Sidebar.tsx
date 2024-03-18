@@ -11,6 +11,8 @@ function Sidebar() {
     setSeparation,
     title,
     setTitle,
+    font,
+    setFont,
   } = useSidebar();
 
   const [errorTitleLenght, setErrorTitleLenght] = useState(false);
@@ -37,6 +39,26 @@ function Sidebar() {
   return (
     <div className="h-full w-[350px] bg-[#242424] p-5">
       <div className="flex flex-col items-start justify-start gap-3">
+        {/* TITLE */}
+        <h4>Title</h4>
+        <div className="flex flex-col items-start justify-start gap-1">
+          <div
+            ref={divRef}
+            className={`${title ? (errorTitleLenght ? "border-red-500" : "border-emerald-600") : "border-neutral-600"} focus-div w-[200px] rounded-[6px] border-[1px] bg-[#303030] pl-3 pr-1`}
+          >
+            <input
+              type="text"
+              className={`${errorTitleLenght ? "text-red-400" : "text-white"} text-[14px] font-light`}
+              onChange={handleTitle}
+            />
+          </div>
+          {errorTitleLenght && (
+            <p className="text-[10px] font-light text-red-500">
+              The maximum length for the title is 40 characters.
+            </p>
+          )}
+        </div>
+        {/* ALIGNMENT */}
         <h4>Alignment</h4>
         <div className="flex gap-2">
           <button
@@ -106,25 +128,27 @@ function Sidebar() {
             <p className="text-alignment-button">vs</p>
           </button>
         </div>
-
-        {/* TITLE */}
-        <h4>Title</h4>
-        <div className="flex flex-col items-start justify-start gap-1">
-          <div
-            ref={divRef}
-            className={`${title ? (errorTitleLenght ? "border-red-500" : "border-emerald-600") : "border-neutral-600"} focus-div w-[200px] rounded-lg border-[1px] bg-[#303030] pl-3 pr-1`}
+        {/* FONTS */}
+        <h4>Fonts</h4>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setFont("gabarito")}
+            className={`font-gabarito ${font === "gabarito" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
           >
-            <input
-              type="text"
-              className={`${errorTitleLenght ? "text-red-400" : "text-white"} text-[14px] font-light`}
-              onChange={handleTitle}
-            />
-          </div>
-          {errorTitleLenght && (
-            <p className="text-[10px] font-light text-red-500">
-              The maximum length for the title is 40 characters.
-            </p>
-          )}
+            <p className="text-alignment-button font-bold">Ga</p>
+          </button>
+          <button
+            onClick={() => setFont("inter")}
+            className={`font-inter ${font === "inter" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+          >
+            <p className="text-alignment-button font-bold">In</p>
+          </button>
+          <button
+            onClick={() => setFont("lato")}
+            className={`font-lato ${font === "lato" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+          >
+            <p className="text-alignment-button font-bold">La</p>
+          </button>
         </div>
       </div>
     </div>

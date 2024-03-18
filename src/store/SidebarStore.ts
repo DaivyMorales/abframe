@@ -12,6 +12,9 @@ export interface AlignmentStore {
 
   title: string;
   setTitle: (value: string) => void;
+
+  font: string;
+  setFont: (value: string) => void;
 }
 
 export const useSidebar = create<AlignmentStore>((set) => ({
@@ -30,5 +33,9 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   title: "",
   setTitle: (value: string) => {
     set(() => ({ title: value }));
+  },
+  font: "gabarito",
+  setFont: (value: string) => {
+    set(() => ({ font: value }));
   },
 }));
