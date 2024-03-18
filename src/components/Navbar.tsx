@@ -1,10 +1,14 @@
 import React, { ReactNode } from "react";
+import { useSession, signIn } from "next-auth/react";
 
 interface NavbarProps {
   children: ReactNode;
 }
 
 function Navbar({ children }: NavbarProps) {
+  const { data: session, status } = useSession();
+  console.log(session);
+
   return (
     <div className="relative">
       <main className="min-h-screen w-screen">
@@ -20,7 +24,22 @@ function Navbar({ children }: NavbarProps) {
             </div>
             <ul>
               <li>
-                <button className="bg-emerald-500">Create test</button>
+                {status === "unauthenticated" ? (
+                  <button
+                    onClick={() => signIn()}
+                    className="rounded-lg bg-emerald-500 p-2 text-xs"
+                  >
+                    Login with Twitter
+                  </button>
+                ) : session?.user.image ? (
+                  <img
+                    src={session?.user.image}
+                    className="h-[40px] w-[40px] rounded-full"
+                    alt=""
+                  />
+                ) : (
+                  <></>
+                )}
               </li>
             </ul>
           </nav>

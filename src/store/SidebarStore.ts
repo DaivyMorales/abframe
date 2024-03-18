@@ -15,6 +15,9 @@ export interface AlignmentStore {
 
   font: string;
   setFont: (value: string) => void;
+
+  credit: boolean;
+  setCredit: (value: boolean) => void;
 }
 
 export const useSidebar = create<AlignmentStore>((set) => ({
@@ -37,5 +40,9 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   font: "gabarito",
   setFont: (value: string) => {
     set(() => ({ font: value }));
+  },
+  credit: false,
+  setCredit: (value: boolean) => {
+    set(() => ({ credit: value }));
   },
 }));

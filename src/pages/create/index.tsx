@@ -3,16 +3,19 @@ import { useSidebar } from "@/store/SidebarStore";
 import { useImage } from "@/store/ImagesStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { HiPlus } from "react-icons/hi";
 import ButtonAddImage from "@/components/create/ButtonAddImage";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 function CreatePage() {
-  const { alignment, letters, separation, title, font } = useSidebar();
+  const { alignment, letters, separation, title, font, credit } = useSidebar();
   const { aColumnImages, bColumnImages } = useImage();
 
   const [onHoverA, setOnHoverA] = useState(false);
   const [onHoverB, setOnHoverB] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
+
+  const { data: session, status } = useSession();
 
   return (
     <div className="flex h-screen w-screen items-center justify-between">
@@ -20,9 +23,9 @@ function CreatePage() {
         <div className="justify-center gap-4">
           <motion.div
             animate={alignment === "flex" ? { scale: 0.9 } : { scale: 1 }}
-            className={`font-${font} flex flex-col items-center justify-center rounded-xl bg-white p-10 shadow-lg`}
+            className={`font-${font} flex min-w-[400px] flex-col items-center justify-center rounded-xl bg-white p-10 shadow-lg`}
           >
-            <h2 className={`text-black font-bold`}>{title}</h2>
+            <h2 className={`font-bold text-black`}>{title}</h2>
             <div className={`${alignment} items-center justify-center gap-3 `}>
               <div
                 onMouseEnter={() => setOnHoverA(true)}
@@ -142,6 +145,25 @@ function CreatePage() {
                 </AnimatePresence>
               </div>
             </div>
+            <AnimatePresence>
+              {status === "authenticated" && credit && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  className="flex w-full justify-center"
+                >
+                  <div className=" flex items-center justify-center gap-1 rounded-lg border-[1px] border-neutral-100 p-1">
+                    <img
+                      src="https://pbs.twimg.com/profile_images/1760288011378446336/JoHs9jPA_400x400.jpg"
+                      alt="User image"
+                      className="h-[17px] w-[17px] rounded-full"
+                    />
+                    <p className="text-[9px]">{session.user.name}</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
