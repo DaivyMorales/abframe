@@ -2,10 +2,11 @@ import Sidebar from "@/components/create/Sidebar";
 import { useSidebar } from "@/store/SidebarStore";
 import { useImage } from "@/store/ImagesStore";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import ButtonAddImage from "@/components/create/ButtonAddImage";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import * as htmlToImage from "html-to-image";
 
 function CreatePage() {
   const {
@@ -25,13 +26,36 @@ function CreatePage() {
 
   const { data: session, status } = useSession();
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  const onButtonClick = useCallback(() => {
+    if (ref.current === null) {
+      return;
+    }
+
+    htmlToImage
+      .toPng(ref.current, { cacheBust: true })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = "my-image-name.png";
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [ref]);
+
   return (
     <div className="flex h-screen w-screen items-center justify-between">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3">
         <div className="justify-center gap-4">
+          <button onClick={onButtonClick}>download</button>
           <motion.div
+            ref={ref}
+            id="abpicture"
             animate={alignment === "flex" ? { scale: 0.9 } : { scale: 1 }}
-            className={`font-${font} flex min-w-[400px] flex-col items-center justify-center rounded-xl bg-white p-10 shadow-lg`}
+            className={`abpicture font-${font} flex min-w-[400px] flex-col items-center justify-center rounded-xl bg-white p-10 shadow-lg`}
           >
             <h2 className={`font-bold text-black`}>{title}</h2>
             <div className={`${alignment} items-center justify-center gap-3 `}>
@@ -181,13 +205,17 @@ function CreatePage() {
                   exit={{ scale: 0 }}
                   className={`flex w-full justify-${creditAlignment} items-center`}
                 >
-                  <div className="flex items-center justify-center gap-1 rounded-lg border-[1px] border-neutral-100 p-1">
-                    <img
-                      src="https://pbs.twimg.com/profile_images/1760288011378446336/JoHs9jPA_400x400.jpg"
-                      alt="User image"
-                      className="h-[17px] w-[17px] rounded-full"
-                    />
-                    <p className="text-[9px]">{session.user.name}</p>
+                  <div className="flex items-center justify-center gap-1 rounded-full border-[1px] border-neutral-100 pr-1">
+                    {session.user.image && (
+                      <Image
+                        height={19}
+                        width={19}
+                        src={session.user.image}
+                        className="h-[19px] w-[19px] rounded-full"
+                        alt="User image"
+                      />
+                    )}
+                    <p className=" text-[9px]">{session.user.name}</p>
                   </div>
                 </motion.div>
               )}

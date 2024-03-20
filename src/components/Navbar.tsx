@@ -26,7 +26,7 @@ function Navbar({ children }: NavbarProps) {
               <li>
                 {status === "unauthenticated" ? (
                   <button
-                    onClick={() => signIn()}
+                    onClick={() => signIn("twitter")}
                     className="rounded-lg bg-emerald-500 p-2 text-xs"
                   >
                     Login with Twitter

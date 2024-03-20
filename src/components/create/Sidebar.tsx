@@ -3,6 +3,7 @@ import { ChangeEvent, useRef, useEffect, useState } from "react";
 import { HiOutlineUser, HiMenuAlt2, HiMenu, HiMenuAlt3 } from "react-icons/hi";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
+import html2canvas from 'html2canvas';
 
 function Sidebar() {
   const {
@@ -31,6 +32,18 @@ function Sidebar() {
   // useEffect(() => {
   //   divRef.current!.focus();
   // }, []);
+
+  const downloadImage = async () => {
+    const divToDownload = document.querySelector('.abpicture');
+    if (divToDownload instanceof HTMLElement) {
+      const canvas = await html2canvas(divToDownload);
+      const imgData = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = 'image.png';
+      link.href = imgData;
+      link.click();
+    }
+  };
 
   const buttonActiveStyle = "border-emerald-500 text-emerald-300";
 
@@ -227,6 +240,7 @@ function Sidebar() {
               </>
             )}
           </div>
+          <button onClick={() => downloadImage()}>Download</button>
         </div>
       )}
     </div>
