@@ -1,5 +1,13 @@
 import { create } from "zustand";
 
+export interface IColorPalette {
+  backgroundColor: string;
+  spacingColor: string;
+  titleColor: string;
+  textColor: string;
+  borderCreditColor: string;
+}
+
 export interface AlignmentStore {
   alignment: string;
   setAlignment: (values: string) => void;
@@ -21,6 +29,9 @@ export interface AlignmentStore {
 
   creditAlignment: string;
   setCreditAlignment: (value: string) => void;
+
+  colorPalette: IColorPalette;
+  setColorPalette: (value: IColorPalette) => void;
 }
 
 export const useSidebar = create<AlignmentStore>((set) => ({
@@ -51,5 +62,15 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   creditAlignment: "center",
   setCreditAlignment: (value: string) => {
     set(() => ({ creditAlignment: value }));
+  },
+  colorPalette: {
+    backgroundColor: "bg-white",
+    spacingColor: "neutral-300",
+    titleColor: "text-black",
+    textColor: "text-neutral-300",
+    borderCreditColor: "border-neutral-300",
+  },
+  setColorPalette: (value: IColorPalette) => {
+    set(() => ({ colorPalette: value }));
   },
 }));

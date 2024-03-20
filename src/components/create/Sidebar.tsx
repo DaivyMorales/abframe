@@ -3,7 +3,8 @@ import { ChangeEvent, useRef, useEffect, useState } from "react";
 import { HiOutlineUser, HiMenuAlt2, HiMenu, HiMenuAlt3 } from "react-icons/hi";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
-import html2canvas from 'html2canvas';
+import html2canvas from "html2canvas";
+import ColorsPalette from "./ColorsPalette";
 
 function Sidebar() {
   const {
@@ -21,6 +22,8 @@ function Sidebar() {
     setCredit,
     creditAlignment,
     setCreditAlignment,
+    colorPalette,
+    setColorPalette,
   } = useSidebar();
 
   const [errorTitleLenght, setErrorTitleLenght] = useState(false);
@@ -34,12 +37,12 @@ function Sidebar() {
   // }, []);
 
   const downloadImage = async () => {
-    const divToDownload = document.querySelector('.abpicture');
+    const divToDownload = document.querySelector(".abpicture");
     if (divToDownload instanceof HTMLElement) {
       const canvas = await html2canvas(divToDownload);
-      const imgData = canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.download = 'image.png';
+      const imgData = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.download = "image.png";
       link.href = imgData;
       link.click();
     }
@@ -59,9 +62,9 @@ function Sidebar() {
   };
 
   return (
-    <div className="h-full w-[350px] bg-[#242424] p-5">
+    <div className="h-full w-[350px] border-l-[1px] border-neutral-700 bg-[#242424] p-5">
       {status === "authenticated" && (
-        <div className="flex flex-col items-start justify-start gap-3">
+        <div className="flex flex-col items-start justify-start gap-4">
           {/* TITLE */}
           <h4>Title</h4>
           <div className="flex flex-col items-start justify-start gap-1">
@@ -82,6 +85,7 @@ function Sidebar() {
               </p>
             )}
           </div>
+          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
           {/* ALIGNMENT */}
           <h4>Alignment</h4>
           <div className="flex gap-2">
@@ -102,6 +106,7 @@ function Sidebar() {
               <p className="text-alignment-button">b</p>
             </button>
           </div>
+          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
           {/* LETTERS */}
           <h4>Letters</h4>
           <div className="flex gap-2">
@@ -126,6 +131,7 @@ function Sidebar() {
               <p className="text-alignment-button">1 2</p>
             </button>
           </div>
+          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
           {/* SPACING */}
           <h4>Spacing</h4>
           <div className="flex gap-2">
@@ -158,6 +164,7 @@ function Sidebar() {
               <p className="text-alignment-button">vs</p>
             </button>
           </div>
+          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
           {/* FONTS */}
           <h4>Fonts</h4>
           <div className="flex gap-2">
@@ -180,6 +187,7 @@ function Sidebar() {
               <p className="text-alignment-button font-bold">La</p>
             </button>
           </div>
+          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
           {/* CREDITS */}
           <h4>Credits</h4>
           <div className="flex items-center justify-start gap-2">
@@ -240,7 +248,12 @@ function Sidebar() {
               </>
             )}
           </div>
-          <button onClick={() => downloadImage()}>Download</button>
+
+          {/* BACKGROUND */}
+          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+          <h4>Color palette</h4>
+          <ColorsPalette />
+          {/* <button onClick={() => downloadImage()}>Download</button> */}
         </div>
       )}
     </div>
