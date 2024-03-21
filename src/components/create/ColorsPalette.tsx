@@ -7,7 +7,7 @@ function ColorsPalette() {
 
   return (
     <div>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-5 gap-2 w-full">
         <div
           onClick={() =>
             setColorPalette({
