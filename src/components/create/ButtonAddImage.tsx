@@ -18,8 +18,16 @@ function ButtonAddImage({
   setOnHover,
   columnName,
 }: ButtonAddImageProps) {
-  const { bColumnImages, setBColumnImages, aColumnImages, setAColumnImages } =
-    useImage();
+  const {
+    bColumnImages,
+    setBColumnImages,
+    aColumnImages,
+    setAColumnImages,
+    cColumnImages,
+    setCColumnImages,
+    dColumnImages,
+    setDColumnImages,
+  } = useImage();
   const handleImageUpload: HandleImageUploadFunc = (event) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -29,6 +37,10 @@ function ButtonAddImage({
           setAColumnImages([...aColumnImages, reader.result as string]);
         } else if (columnName === "b") {
           setBColumnImages([...bColumnImages, reader.result as string]);
+        } else if (columnName === "c") {
+          setCColumnImages([...cColumnImages, reader.result as string]);
+        } else if (columnName === "d") {
+          setDColumnImages([...dColumnImages, reader.result as string]);
         }
         setLoadingImage(false);
       };

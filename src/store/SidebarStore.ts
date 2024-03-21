@@ -8,6 +8,11 @@ export interface IColorPalette {
   borderCreditColor: string;
 }
 
+export interface IAddColumns {
+  addCColumn: boolean;
+  addDColumn: boolean;
+}
+
 export interface AlignmentStore {
   alignment: string;
   setAlignment: (values: string) => void;
@@ -32,6 +37,9 @@ export interface AlignmentStore {
 
   colorPalette: IColorPalette;
   setColorPalette: (value: IColorPalette) => void;
+
+  AddColumns: IAddColumns;
+  setAddColumns: (value: IAddColumns) => void;
 }
 
 export const useSidebar = create<AlignmentStore>((set) => ({
@@ -72,5 +80,12 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   },
   setColorPalette: (value: IColorPalette) => {
     set(() => ({ colorPalette: value }));
+  },
+  AddColumns: {
+    addCColumn: false,
+    addDColumn: false,
+  },
+  setAddColumns: (value: IAddColumns) => {
+    set(() => ({ AddColumns: value }));
   },
 }));

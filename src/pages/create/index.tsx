@@ -19,12 +19,15 @@ function CreatePage() {
     credit,
     creditAlignment,
     colorPalette,
+    AddColumns,
   } = useSidebar();
-  console.log(colorPalette);
-  const { aColumnImages, bColumnImages } = useImage();
+  const { aColumnImages, bColumnImages, cColumnImages, dColumnImages } =
+    useImage();
 
   const [onHoverA, setOnHoverA] = useState(false);
   const [onHoverB, setOnHoverB] = useState(false);
+  const [onHoverC, setOnHoverC] = useState(false);
+  const [onHoverD, setOnHoverD] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
 
   const { data: session, status } = useSession();
@@ -58,7 +61,7 @@ function CreatePage() {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.7 }}
             // onClick={onButtonClick}
-            className="w- flex items-center justify-center gap-1 rounded-lg border-[1px] border-emerald-400 bg-emerald-500 px-7 py-1 text-[15px] font-light text-white shadow-lg shadow-sm hover:shadow-emerald-800"
+            className="w- gap-1x flex items-center justify-center rounded-lg border-[1px] border-emerald-400 bg-emerald-500 px-7 py-1 text-[15px] font-light text-white shadow-lg shadow-sm hover:shadow-emerald-800"
           >
             <HiDownload />
             Download PNG
@@ -78,7 +81,7 @@ function CreatePage() {
                 {title}
               </h2>
               <div
-                className={`${alignment} items-center justify-center gap-3 `}
+                className={`${AddColumns.addCColumn || AddColumns.addDColumn ? "grid grid-cols-2" : alignment} items-center justify-center gap-3  `}
               >
                 <div
                   onMouseEnter={() => setOnHoverA(true)}
@@ -141,7 +144,8 @@ function CreatePage() {
                     )}
                   </AnimatePresence>
                 </div>
-                {separation === "or" ? (
+                {AddColumns.addCColumn ||
+                AddColumns.addDColumn ? null : separation === "or" ? (
                   <motion.p
                     className={`text-${colorPalette.spacingColor}`}
                     initial={{ scale: 0 }}
@@ -167,6 +171,7 @@ function CreatePage() {
                   <></>
                 )}
 
+                {/* B */}
                 <div
                   onMouseEnter={() => setOnHoverB(true)}
                   onMouseLeave={() => setOnHoverB(loadingImage ? true : false)}
@@ -175,13 +180,6 @@ function CreatePage() {
                   <div
                     className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
                   >
-                    {/* <motion.img
-                    src="https://i.scdn.co/image/ab67616d00001e024718e2b124f79258be7bc452"
-                    alt="Example image"
-                    className="h-[150px] w-[150px] rounded-xl shadow-lg"
-                    layout
-                  /> */}
-
                     {bColumnImages.map((bCol) => (
                       <motion.img
                         key={bCol}
@@ -229,6 +227,127 @@ function CreatePage() {
                     )}
                   </AnimatePresence>
                 </div>
+
+                {/* C */}
+                {AddColumns.addCColumn && (
+                  <div
+                    onMouseEnter={() => setOnHoverC(true)}
+                    onMouseLeave={() =>
+                      setOnHoverC(loadingImage ? true : false)
+                    }
+                    className={`${!AddColumns.addDColumn && "col-span-2"} flex min-h-[140px] min-w-[140px] flex-col  items-center justify-center gap-4 p-4`}
+                  >
+                    <div
+                      className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
+                    >
+                      {cColumnImages.map((bCol) => (
+                        <motion.img
+                          key={bCol}
+                          src={bCol}
+                          alt="Example image"
+                          className=" max-h-[100px] max-w-[100px] rounded-lg shadow-lg"
+                          layout
+                        />
+                      ))}
+
+                      {onHoverC && (
+                        <ButtonAddImage
+                          loadingImage={loadingImage}
+                          setLoadingImage={setLoadingImage}
+                          setOnHover={setOnHoverC}
+                          columnName="c"
+                        />
+                      )}
+                    </div>
+                    <AnimatePresence mode="popLayout">
+                      {letters === "ab" ? (
+                        <motion.p
+                          key={2}
+                          initial={{ scale: 0, opacity: 0, rotate: "90deg" }}
+                          animate={{ scale: 1, opacity: 1, rotate: "0deg" }}
+                          transition={{ duration: 0.2 }}
+                          exit={{ opacity: 0, scale: 0 }}
+                          className={`${colorPalette.textColor}`}
+                        >
+                          C
+                        </motion.p>
+                      ) : letters === "12" ? (
+                        <motion.p
+                          key={2}
+                          initial={{ scale: 0, opacity: 0, rotate: "90deg" }}
+                          animate={{ scale: 1, opacity: 1, rotate: "0deg" }}
+                          transition={{ duration: 0.2 }}
+                          exit={{ opacity: 0, scale: 0 }}
+                          className={`${colorPalette.textColor}`}
+                        >
+                          3
+                        </motion.p>
+                      ) : (
+                        <></>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
+
+                {AddColumns.addDColumn && (
+                  <div
+                    onMouseEnter={() => setOnHoverD(true)}
+                    onMouseLeave={() =>
+                      setOnHoverD(loadingImage ? true : false)
+                    }
+                    className="flex min-h-[140px] min-w-[140px] flex-col  items-center justify-center gap-4 p-4"
+                  >
+                    <div
+                      className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
+                    >
+                      {dColumnImages.map((bCol) => (
+                        <motion.img
+                          key={bCol}
+                          src={bCol}
+                          alt="Example image"
+                          className=" max-h-[100px] max-w-[100px] rounded-lg shadow-lg"
+                          layout
+                        />
+                      ))}
+
+                      {onHoverD && (
+                        <ButtonAddImage
+                          loadingImage={loadingImage}
+                          setLoadingImage={setLoadingImage}
+                          setOnHover={setOnHoverD}
+                          columnName="d"
+                        />
+                      )}
+                    </div>
+                    <AnimatePresence mode="popLayout">
+                      {letters === "ab" ? (
+                        <motion.p
+                          key={2}
+                          initial={{ scale: 0, opacity: 0, rotate: "90deg" }}
+                          animate={{ scale: 1, opacity: 1, rotate: "0deg" }}
+                          transition={{ duration: 0.2 }}
+                          exit={{ opacity: 0, scale: 0 }}
+                          className={`${colorPalette.textColor}`}
+                        >
+                          D
+                        </motion.p>
+                      ) : letters === "12" ? (
+                        <motion.p
+                          key={2}
+                          initial={{ scale: 0, opacity: 0, rotate: "90deg" }}
+                          animate={{ scale: 1, opacity: 1, rotate: "0deg" }}
+                          transition={{ duration: 0.2 }}
+                          exit={{ opacity: 0, scale: 0 }}
+                          className={`${colorPalette.textColor}`}
+                        >
+                          4
+                        </motion.p>
+                      ) : (
+                        <></>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
               </div>
               <AnimatePresence>
                 {status === "authenticated" && credit && (

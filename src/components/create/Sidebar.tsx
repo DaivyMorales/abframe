@@ -22,8 +22,8 @@ function Sidebar() {
     setCredit,
     creditAlignment,
     setCreditAlignment,
-    colorPalette,
-    setColorPalette,
+    AddColumns,
+    setAddColumns,
   } = useSidebar();
 
   const [errorTitleLenght, setErrorTitleLenght] = useState(false);
@@ -35,18 +35,6 @@ function Sidebar() {
   // useEffect(() => {
   //   divRef.current!.focus();
   // }, []);
-
-  const downloadImage = async () => {
-    const divToDownload = document.querySelector(".abpicture");
-    if (divToDownload instanceof HTMLElement) {
-      const canvas = await html2canvas(divToDownload);
-      const imgData = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.download = "image.png";
-      link.href = imgData;
-      link.click();
-    }
-  };
 
   const buttonActiveStyle = "border-emerald-500 text-emerald-300";
 
@@ -85,6 +73,48 @@ function Sidebar() {
                   The maximum length for the title is 40 characters.
                 </p>
               )}
+            </div>
+          </div>
+          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+
+          {/* GROUPS */}
+          <div className="flex flex-col items-start justify-start gap-2">
+            <h4>Groups</h4>
+            <div className="flex gap-2">
+              <button
+                className={`${buttonActiveStyle} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+              >
+                <p className="text-alignment-button">a</p>
+              </button>
+              <button
+                className={`${buttonActiveStyle} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+              >
+                <p className="text-alignment-button">b</p>
+              </button>
+              <button
+                onClick={() => {
+                  setSeparation("not");
+                  setAddColumns({
+                    ...AddColumns,
+                    addCColumn: !AddColumns.addCColumn,
+                  });
+                }}
+                className={`${AddColumns.addCColumn ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+              >
+                <p className="text-alignment-button">c</p>
+              </button>
+              <button
+                onClick={() => {
+                  setSeparation("not");
+                  setAddColumns({
+                    ...AddColumns,
+                    addDColumn: !AddColumns.addDColumn,
+                  });
+                }}
+                className={`${AddColumns.addDColumn ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
+              >
+                <p className="text-alignment-button">d</p>
+              </button>
             </div>
           </div>
           <div className="h-[1px] w-full rounded-full bg-neutral-700" />
@@ -144,13 +174,14 @@ function Sidebar() {
             <div className="flex gap-2">
               <button
                 onClick={() => setSeparation("not")}
-                className={`${separation === "not" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] items-center justify-center gap-1 rounded-xl border-[1px] `}
+                className={`${separation === "not" || AddColumns.addCColumn || AddColumns.addDColumn ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] items-center justify-center gap-1 rounded-xl border-[1px] `}
               >
                 <div
-                  className={`${separation === "not" ? "bg-emerald-600" : "bg-neutral-700"} h-full w-[2px] -rotate-45 `}
+                  className={`${separation === "not" || AddColumns.addCColumn || AddColumns.addDColumn ? "bg-emerald-600" : "bg-neutral-700"} h-full w-[2px] -rotate-45 `}
                 ></div>
               </button>
               <button
+                disabled={AddColumns.addCColumn || AddColumns.addDColumn}
                 onClick={() => setSeparation("bar")}
                 className={`${separation === "bar" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] items-center justify-center gap-1 rounded-xl border-[1px] `}
               >
@@ -159,12 +190,14 @@ function Sidebar() {
                 ></div>
               </button>
               <button
+                disabled={AddColumns.addCColumn || AddColumns.addDColumn}
                 onClick={() => setSeparation("or")}
                 className={`${separation === "or" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
               >
                 <p className="text-alignment-button">or</p>
               </button>
               <button
+                disabled={AddColumns.addCColumn || AddColumns.addDColumn}
                 onClick={() => setSeparation("vs")}
                 className={`${separation === "vs" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex w-[50px] flex-col items-center justify-center rounded-xl border-[1px]  px-1 py-1`}
               >

@@ -5,6 +5,10 @@ export interface ImageStore {
   setAColumnImages: (img: string[]) => void;
   bColumnImages: string[];
   setBColumnImages: (img: string[]) => void;
+  cColumnImages: string[];
+  setCColumnImages: (img: string[]) => void;
+  dColumnImages: string[];
+  setDColumnImages: (img: string[]) => void;
 }
 
 export const useImage = create<ImageStore>((set) => ({
@@ -15,5 +19,13 @@ export const useImage = create<ImageStore>((set) => ({
   bColumnImages: [],
   setBColumnImages: (imgs: string[]) => {
     set(() => ({ bColumnImages: imgs }));
+  },
+  cColumnImages: [],
+  setCColumnImages: (imgs: string[]) => {
+    set(() => ({ cColumnImages: imgs }));
+  },
+  dColumnImages: [],
+  setDColumnImages: (imgs: string[]) => {
+    set(() => ({ dColumnImages: imgs }));
   },
 }));
