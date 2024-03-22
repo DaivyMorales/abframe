@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import * as htmlToImage from "html-to-image";
 import { HiDownload } from "react-icons/hi";
 import { FaRegTrashCan } from "react-icons/fa6";
+import ImageComponent from "@/components/create/ImageComponent";
 
 function CreatePage() {
   const {
@@ -32,8 +33,6 @@ function CreatePage() {
     setCColumnImages,
     setDColumnImages,
   } = useImage();
-
-  console.log(aColumnImages);
 
   const [onHoverA, setOnHoverA] = useState(false);
   const [onHoverB, setOnHoverB] = useState(false);
@@ -109,38 +108,14 @@ function CreatePage() {
                     layout
                   /> */}
                     {aColumnImages.map((aCol) => (
-                      <motion.div
-                        className="relative"
-                        onMouseEnter={() => setOnHoverA(true)}
-                        onMouseLeave={() =>
-                          setOnHoverA(loadingImage ? true : false)
-                        }
-                        layout
-                      >
-                        <img
-                          key={aCol}
-                          src={aCol}
-                          alt="Example image"
-                          className={`max-h-[100px] max-w-[100px] rounded-lg shadow-lg ${onHoverA ? "ring-[2px] ring-red-500 brightness-[0.9]" : ""}`}
-                        />
-                        {onHoverA && (
-                          <motion.div
-                            initial={{ scale: 0.4 }}
-                            whileInView={{ scale: 1 }}
-                            className="absolute right-9 top-9 cursor-pointer rounded-full bg-gray-200 p-2"
-                            // onClick={() => setAColumnImages({})}
-                            onClick={() => {
-                              const removeImage = aColumnImages.filter(
-                                (aColumn) => aColumn !== aCol,
-                              );
-
-                              setAColumnImages(removeImage);
-                            }}
-                          >
-                            <FaRegTrashCan color="red" />
-                          </motion.div>
-                        )}
-                      </motion.div>
+                      <ImageComponent
+                        key={aCol}
+                        onHover={onHoverA}
+                        setOnHover={setOnHoverA}
+                        loadingImage={loadingImage}
+                        col={aCol}
+                        columnName="a"
+                      />
                     ))}
 
                     {onHoverA && (
@@ -217,12 +192,13 @@ function CreatePage() {
                     className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
                   >
                     {bColumnImages.map((bCol) => (
-                      <motion.img
+                        <ImageComponent
                         key={bCol}
-                        src={bCol}
-                        alt="Example image"
-                        className=" max-h-[100px] max-w-[100px] rounded-lg shadow-lg"
-                        layout
+                        onHover={onHoverB}
+                        setOnHover={setOnHoverB}
+                        loadingImage={loadingImage}
+                        col={bCol}
+                        columnName="b"
                       />
                     ))}
 
@@ -276,14 +252,15 @@ function CreatePage() {
                     <div
                       className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
                     >
-                      {cColumnImages.map((bCol) => (
-                        <motion.img
-                          key={bCol}
-                          src={bCol}
-                          alt="Example image"
-                          className=" max-h-[100px] max-w-[100px] rounded-lg shadow-lg"
-                          layout
-                        />
+                      {cColumnImages.map((cCol) => (
+                        <ImageComponent
+                        key={cCol}
+                        onHover={onHoverC}
+                        setOnHover={setOnHoverC}
+                        loadingImage={loadingImage}
+                        col={cCol}
+                        columnName="c"
+                      />
                       ))}
 
                       {onHoverC && (
@@ -336,14 +313,15 @@ function CreatePage() {
                     <div
                       className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
                     >
-                      {dColumnImages.map((bCol) => (
-                        <motion.img
-                          key={bCol}
-                          src={bCol}
-                          alt="Example image"
-                          className=" max-h-[100px] max-w-[100px] rounded-lg shadow-lg"
-                          layout
-                        />
+                      {dColumnImages.map((dCol) => (
+                        <ImageComponent
+                        key={dCol}
+                        onHover={onHoverD}
+                        setOnHover={setOnHoverD}
+                        loadingImage={loadingImage}
+                        col={dCol}
+                        columnName="d"
+                      />
                       ))}
 
                       {onHoverD && (
