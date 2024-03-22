@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import * as htmlToImage from "html-to-image";
 import { HiDownload } from "react-icons/hi";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 function CreatePage() {
   const {
@@ -21,8 +22,18 @@ function CreatePage() {
     colorPalette,
     AddColumns,
   } = useSidebar();
-  const { aColumnImages, bColumnImages, cColumnImages, dColumnImages } =
-    useImage();
+  const {
+    aColumnImages,
+    bColumnImages,
+    cColumnImages,
+    dColumnImages,
+    setAColumnImages,
+    setBColumnImages,
+    setCColumnImages,
+    setDColumnImages,
+  } = useImage();
+
+  console.log(aColumnImages);
 
   const [onHoverA, setOnHoverA] = useState(false);
   const [onHoverB, setOnHoverB] = useState(false);
@@ -60,7 +71,7 @@ function CreatePage() {
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.7 }}
-            // onClick={onButtonClick}
+            onClick={onButtonClick}
             className="w- gap-1x flex items-center justify-center rounded-lg border-[1px] border-emerald-400 bg-emerald-500 px-7 py-1 text-[15px] font-light text-white shadow-lg shadow-sm hover:shadow-emerald-800"
           >
             <HiDownload />
@@ -98,13 +109,38 @@ function CreatePage() {
                     layout
                   /> */}
                     {aColumnImages.map((aCol) => (
-                      <motion.img
-                        key={aCol}
-                        src={aCol}
-                        alt="Example image"
-                        className="max-h-[100px] max-w-[100px] rounded-lg shadow-lg"
+                      <motion.div
+                        className="relative"
+                        onMouseEnter={() => setOnHoverA(true)}
+                        onMouseLeave={() =>
+                          setOnHoverA(loadingImage ? true : false)
+                        }
                         layout
-                      />
+                      >
+                        <img
+                          key={aCol}
+                          src={aCol}
+                          alt="Example image"
+                          className={`max-h-[100px] max-w-[100px] rounded-lg shadow-lg ${onHoverA ? "ring-[2px] ring-red-500 brightness-[0.9]" : ""}`}
+                        />
+                        {onHoverA && (
+                          <motion.div
+                            initial={{ scale: 0.4 }}
+                            whileInView={{ scale: 1 }}
+                            className="absolute right-9 top-9 cursor-pointer rounded-full bg-gray-200 p-2"
+                            // onClick={() => setAColumnImages({})}
+                            onClick={() => {
+                              const removeImage = aColumnImages.filter(
+                                (aColumn) => aColumn !== aCol,
+                              );
+
+                              setAColumnImages(removeImage);
+                            }}
+                          >
+                            <FaRegTrashCan color="red" />
+                          </motion.div>
+                        )}
+                      </motion.div>
                     ))}
 
                     {onHoverA && (

@@ -23,14 +23,14 @@ function ColorsPalette() {
         <div
           onClick={() =>
             setColorPalette({
-              backgroundColor: "bg-neutral-800",
+              backgroundColor: "bg-black",
               spacingColor: "neutral-200",
               titleColor: "text-white",
               textColor: "text-neutral-200",
               borderCreditColor: "border-neutral-200",
             })
           }
-          className={`h-[40px] w-[40px] cursor-pointer rounded-lg ${colorPalette.backgroundColor === "bg-neutral-800" ? colorSelected : ""}`}
+          className={`h-[40px] w-[40px] cursor-pointer bg-black rounded-lg ${colorPalette.backgroundColor === "bg-black" ? colorSelected : ""}`}
         />
 
         <div
