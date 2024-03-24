@@ -63,7 +63,7 @@ function CreatePage() {
   }, [ref]);
 
   return (
-    <div className="flex h-[727px] w-full flex-col items-start justify-between bg-neutral-400 md:flex-row">
+    <div className="flex h-[727px] w-full flex-col gap-2 items-start justify-between bg-neutral-400 md:flex-row">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3 ">
         <div className="flex h-[50px] w-full items-center justify-center border-b-[1px] border-neutral-700 bg-[#242424] py-8 px-2">
           <motion.button
@@ -88,7 +88,7 @@ function CreatePage() {
               animate={alignment === "flex" ? { scale: 0.9 } : { scale: 1 }}
               className={`abpicture font-${font} flex  flex-col items-center justify-center rounded-xl ${colorPalette.backgroundColor} p-7 font-medium shadow-lg`}
             >
-              <h2 className={`font-bold ${colorPalette.titleColor}`}>
+              <h2 className={`w-full text-center font-bold ${colorPalette.titleColor}`}>
                 {title}
               </h2>
               <div
