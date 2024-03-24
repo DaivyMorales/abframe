@@ -50,9 +50,9 @@ function Sidebar() {
   };
 
   return (
-    <div className=" min-w-[300px] w-full border-l-[1px] border-neutral-700 bg-[#242424] p-5 rounded-t-2xl pb-3">
+    <div className="min-w-[300px] w-full border-l-[1px] border-neutral-700 bg-[#242424] p-5 rounded-t-2xl pb-3 md:rounded-[0px] md:h-full md:w-[150px]">
       {status === "authenticated" && (
-        <div className="custom-scrollbar flex flex-col items-start justify-start gap-4 overflow-y-scroll max-h-[300px]">
+        <div className="custom-scrollbar flex flex-col items-start justify-start gap-4 overflow-y-scroll max-h-[300px] md:max-h-[780px] sm:grid sm:grid-cols-2 md:flex md:flex-col">
           {/* TITLE */}
           <div className="flex flex-col items-start justify-start gap-2">
             <h4>Title</h4>
@@ -75,7 +75,7 @@ function Sidebar() {
               )}
             </div>
           </div>
-          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+          {/* <div className="h-[1px] w-full rounded-full bg-neutral-700" /> */}
 
           {/* GROUPS */}
           <div className="flex flex-col items-start justify-start gap-2">
@@ -117,7 +117,7 @@ function Sidebar() {
               </button>
             </div>
           </div>
-          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+          {/* <div className="h-[1px] w-full rounded-full bg-neutral-700" /> */}
           {/* ALIGNMENT */}
           <div className="flex flex-col items-start justify-start gap-2">
             <h4>Alignment</h4>
@@ -140,7 +140,7 @@ function Sidebar() {
               </button>
             </div>
           </div>
-          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+          {/* <div className="h-[1px] w-full rounded-full bg-neutral-700" /> */}
           {/* LETTERS */}
           <div className="flex flex-col items-start justify-start gap-2">
             <h4>Letters</h4>
@@ -167,7 +167,7 @@ function Sidebar() {
               </button>
             </div>
           </div>
-          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+          {/* <div className="h-[1px] w-full rounded-full bg-neutral-700" /> */}
           {/* SPACING */}
           <div className="flex flex-col items-start justify-start gap-2">
             <h4>Spacing</h4>
@@ -205,7 +205,7 @@ function Sidebar() {
               </button>
             </div>
           </div>
-          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+          {/* <div className="h-[1px] w-full rounded-full bg-neutral-700" /> */}
           {/* FONTS */}
           <div className="flex flex-col items-start justify-start gap-2">
             <h4>Fonts</h4>
@@ -230,7 +230,7 @@ function Sidebar() {
               </button>
             </div>
           </div>
-          <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+          {/* <div className="h-[1px] w-full rounded-full bg-neutral-700" /> */}
           {/* CREDITS */}
           <div className="flex flex-col items-start justify-start gap-2">
             <h4>Credits</h4>
@@ -296,7 +296,7 @@ function Sidebar() {
 
           {/* BACKGROUND */}
           <div className="flex flex-col items-start justify-start gap-2">
-            <div className="h-[1px] w-full rounded-full bg-neutral-700" />
+            {/* <div className="h-[1px] w-full rounded-full bg-neutral-700" /> */}
             <h4>Color palette</h4>
             <ColorsPalette />
             {/* <button onClick={() => downloadImage()}>Download</button> */}

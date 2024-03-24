@@ -63,7 +63,7 @@ function CreatePage() {
   }, [ref]);
 
   return (
-    <div className="flex h-screen w-full flex-col items-start justify-between bg-neutral-400 ">
+    <div className="flex h-screen w-full flex-col items-start justify-between bg-neutral-400 md:flex-row">
       <div className="flex h-screen w-full flex-col items-center justify-center gap-3 ">
         <div className="flex h-[50px] w-full items-center justify-center border-b-[1px] border-neutral-700 bg-[#242424] py-8 px-2">
           <motion.button
