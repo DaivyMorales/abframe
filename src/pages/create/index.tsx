@@ -63,9 +63,9 @@ function CreatePage() {
   }, [ref]);
 
   return (
-    <div className="flex h-screen w-full items-start justify-between ">
+    <div className="flex h-screen w-full flex-col items-start justify-between bg-neutral-400 ">
       <div className="flex h-screen w-full flex-col items-center justify-center gap-3 ">
-        <div className="flex h-[50px] w-full items-center justify-center border-b-[1px] border-neutral-700 bg-[#242424] py-8">
+        <div className="flex h-[50px] w-full items-center justify-center border-b-[1px] border-neutral-700 bg-[#242424] py-8 px-2">
           <motion.button
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.2 }}
@@ -81,11 +81,12 @@ function CreatePage() {
           <div className="justify-center gap-4">
             {/* <button onClick={onButtonClick}>download</button> */}
 
+            {/* EDITING IMAGE */}
             <motion.div
               ref={ref}
               id="abpicture"
               animate={alignment === "flex" ? { scale: 0.9 } : { scale: 1 }}
-              className={`abpicture font-${font} flex min-w-[400px] flex-col items-center justify-center rounded-xl ${colorPalette.backgroundColor} p-7 font-medium shadow-lg`}
+              className={`abpicture font-${font} flex  flex-col items-center justify-center rounded-xl ${colorPalette.backgroundColor} p-7 font-medium shadow-lg`}
             >
               <h2 className={`font-bold ${colorPalette.titleColor}`}>
                 {title}
@@ -192,7 +193,7 @@ function CreatePage() {
                     className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
                   >
                     {bColumnImages.map((bCol) => (
-                        <ImageComponent
+                      <ImageComponent
                         key={bCol}
                         onHover={onHoverB}
                         setOnHover={setOnHoverB}
@@ -254,13 +255,13 @@ function CreatePage() {
                     >
                       {cColumnImages.map((cCol) => (
                         <ImageComponent
-                        key={cCol}
-                        onHover={onHoverC}
-                        setOnHover={setOnHoverC}
-                        loadingImage={loadingImage}
-                        col={cCol}
-                        columnName="c"
-                      />
+                          key={cCol}
+                          onHover={onHoverC}
+                          setOnHover={setOnHoverC}
+                          loadingImage={loadingImage}
+                          col={cCol}
+                          columnName="c"
+                        />
                       ))}
 
                       {onHoverC && (
@@ -315,13 +316,13 @@ function CreatePage() {
                     >
                       {dColumnImages.map((dCol) => (
                         <ImageComponent
-                        key={dCol}
-                        onHover={onHoverD}
-                        setOnHover={setOnHoverD}
-                        loadingImage={loadingImage}
-                        col={dCol}
-                        columnName="d"
-                      />
+                          key={dCol}
+                          onHover={onHoverD}
+                          setOnHover={setOnHoverD}
+                          loadingImage={loadingImage}
+                          col={dCol}
+                          columnName="d"
+                        />
                       ))}
 
                       {onHoverD && (

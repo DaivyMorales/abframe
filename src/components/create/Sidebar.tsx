@@ -50,9 +50,9 @@ function Sidebar() {
   };
 
   return (
-    <div className="h-full w-[400px] border-l-[1px] border-neutral-700 bg-[#242424] p-5">
+    <div className=" min-w-[300px] w-full border-l-[1px] border-neutral-700 bg-[#242424] p-5 rounded-t-2xl pb-3">
       {status === "authenticated" && (
-        <div className="custom-scrollbar flex flex-col items-start justify-start gap-4 ">
+        <div className="custom-scrollbar flex flex-col items-start justify-start gap-4 overflow-y-scroll max-h-[300px]">
           {/* TITLE */}
           <div className="flex flex-col items-start justify-start gap-2">
             <h4>Title</h4>
