@@ -7,11 +7,10 @@ interface NavbarProps {
 
 function Navbar({ children }: NavbarProps) {
   const { data: session, status } = useSession();
-  console.log(session);
 
   return (
     <div className="relative">
-      <main className="w-full bg-red-500">
+      <main className="w-full h-screen">
         <header className="bg-[#242424] w-full border-b-[1px] border-neutral-700 px-20 py-4">
           <nav className="flex  items-center justify-between">
             <div className="flex items-center gap-2">
