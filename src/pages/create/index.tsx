@@ -71,7 +71,7 @@ function CreatePage() {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.7 }}
             onClick={onButtonClick}
-            className="w- gap-1x flex items-center justify-center rounded-lg border-[1px] border-emerald-400 bg-emerald-500 px-7 py-1 text-[15px] font-light text-white shadow-lg shadow-sm hover:shadow-emerald-800"
+            className="gap-1x flex items-center justify-center rounded-lg border-[1px] border-emerald-400 bg-emerald-500 px-7 py-1 text-[15px] font-light text-white shadow-lg shadow-sm hover:shadow-emerald-800"
           >
             <HiDownload />
             Download PNG
