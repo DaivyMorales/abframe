@@ -31,8 +31,7 @@ function ImageComponent({
   return (
     <motion.div
       className="relative flex justify-center items-center"
-      onMouseEnter={() => setOnHover(true)}
-      onMouseLeave={() => setOnHover(loadingImage ? true : false)}
+      
       layout
     >
       <img

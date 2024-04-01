@@ -64,9 +64,9 @@ function CreatePage() {
   }, [ref]);
 
   return (
-    <div className="flex h-[727px] w-full flex-col gap-2 items-start justify-between bg-neutral-400 md:flex-row">
+    <div className="flex h-[727px] w-full flex-col items-start justify-between gap-2 bg-neutral-400 md:flex-row">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3 ">
-        <div className="flex h-[50px] w-full items-center justify-center   border-neutral-700  py-8 px-2">
+        <div className="flex h-[50px] w-full items-center justify-center   border-neutral-700  px-2 py-8">
           <motion.button
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.2 }}
@@ -89,7 +89,9 @@ function CreatePage() {
               animate={alignment === "flex" ? { scale: 0.9 } : { scale: 1 }}
               className={`abpicture font-${font} flex  flex-col items-center justify-center rounded-xl ${colorPalette.backgroundColor} p-7 font-medium shadow-lg`}
             >
-              <h2 className={`w-full text-center font-bold ${colorPalette.titleColor}`}>
+              <h2
+                className={`w-full text-center font-bold ${colorPalette.titleColor}`}
+              >
                 {title}
               </h2>
               <div
@@ -101,6 +103,8 @@ function CreatePage() {
                   className="flex min-h-[140px] min-w-[140px] flex-col  items-center justify-center gap-4 p-4"
                 >
                   <div
+                    onMouseEnter={() => setOnHoverA(true)}
+                    onMouseLeave={() => setOnHoverA(loadingImage ? true : false)}
                     className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"}  items-center justify-center gap-3 rounded-xl`}
                   >
                     {/* <motion.img
@@ -191,6 +195,8 @@ function CreatePage() {
                   className="flex min-h-[140px] min-w-[140px] flex-col  items-center justify-center gap-4 p-4"
                 >
                   <div
+                  onMouseEnter={() => setOnHoverB(true)}
+                  onMouseLeave={() => setOnHoverB(loadingImage ? true : false)}
                     className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
                   >
                     {bColumnImages.map((bCol) => (
@@ -252,6 +258,8 @@ function CreatePage() {
                     className={`${!AddColumns.addDColumn && "col-span-2"} flex min-h-[140px] min-w-[140px] flex-col  items-center justify-center gap-4 p-4`}
                   >
                     <div
+                    onMouseEnter={() => setOnHoverC(true)}
+                    onMouseLeave={() => setOnHoverC(loadingImage ? true : false)}
                       className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
                     >
                       {cColumnImages.map((cCol) => (
@@ -313,6 +321,8 @@ function CreatePage() {
                     className="flex min-h-[140px] min-w-[140px] flex-col  items-center justify-center gap-4 p-4"
                   >
                     <div
+                    onMouseEnter={() => setOnHoverD(true)}
+                    onMouseLeave={() => setOnHoverD(loadingImage ? true : false)}
                       className={`${alignment === "flex flex-col" ? "flex" : "flex flex-col"} items-center justify-center gap-3 rounded-xl`}
                     >
                       {dColumnImages.map((dCol) => (
