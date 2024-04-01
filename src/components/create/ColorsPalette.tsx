@@ -6,7 +6,7 @@ function ColorsPalette() {
   const colorSelected = "ring-[3px] ring-emerald-600";
 
   return (
-    <div>
+    <div className="p-2 bg-neutral-700 rounded-xl">
       <div className="grid grid-cols-5 gap-2 w-full">
         <div
           onClick={() =>

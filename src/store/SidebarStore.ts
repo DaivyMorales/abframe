@@ -13,6 +13,7 @@ export interface IAddColumns {
   addDColumn: boolean;
 }
 
+
 export interface AlignmentStore {
   alignment: string;
   setAlignment: (values: string) => void;
@@ -81,7 +82,7 @@ export const useSidebar = create<AlignmentStore>((set) => ({
   setColorPalette: (value: IColorPalette) => {
     set(() => ({ colorPalette: value }));
   },
-  AddColumns: {
+  AddColumns: { 
     addCColumn: false,
     addDColumn: false,
   },

@@ -23,6 +23,7 @@ function CreatePage() {
     colorPalette,
     AddColumns,
   } = useSidebar();
+
   const {
     aColumnImages,
     bColumnImages,
@@ -65,7 +66,7 @@ function CreatePage() {
   return (
     <div className="flex h-[727px] w-full flex-col gap-2 items-start justify-between bg-neutral-400 md:flex-row">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3 ">
-        <div className="flex h-[50px] w-full items-center justify-center border-b-[1px] border-neutral-700 bg-[#242424] py-8 px-2">
+        <div className="flex h-[50px] w-full items-center justify-center   border-neutral-700  py-8 px-2">
           <motion.button
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.2 }}
@@ -169,7 +170,7 @@ function CreatePage() {
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className={` rounded-full bg-${colorPalette.spacingColor} ${alignment === "flex" ? "h-[60px] w-[2px]" : "h-[2px] w-[80px]"}`}
+                    className={`bg-${colorPalette.spacingColor} rounded-full ${alignment === "flex" ? "h-[60px] w-[2px]" : "h-[2px] w-[80px]"}`}
                   />
                 ) : separation === "vs" ? (
                   <motion.h3

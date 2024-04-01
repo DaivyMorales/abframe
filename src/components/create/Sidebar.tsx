@@ -51,7 +51,7 @@ function Sidebar() {
 
   return (
     <div className="min-w-[300px] w-full border-l-[1px] border-neutral-700 bg-[#242424] p-5 rounded-t-2xl pb-3 md:rounded-[0px] md:h-full md:w-[150px]">
-      {status === "authenticated" && (
+      
         <div className="custom-scrollbar flex flex-col items-start justify-start gap-4 overflow-y-scroll max-h-[300px] md:max-h-[780px] sm:grid sm:grid-cols-2 md:flex md:flex-col">
           {/* TITLE */}
           <div className="flex flex-col items-start justify-start gap-2">
@@ -278,16 +278,7 @@ function Sidebar() {
                         <HiMenu />
                       </div>
                     </button>
-                    <button
-                      onClick={() => setCreditAlignment("end")}
-                      className={`${creditAlignment === "end" ? buttonActiveStyle : "border-neutral-600 text-neutral-600"} flex h-[27px] w-[30px] items-center justify-center gap-1 rounded-xl border-[1px]`}
-                    >
-                      <div
-                        className={`${creditAlignment === "end" ? "text-emerald-300" : "text-neutral-700"} `}
-                      >
-                        <HiMenuAlt3 />
-                      </div>
-                    </button>
+                   
                   </div>
                 </>
               )}
@@ -302,7 +293,7 @@ function Sidebar() {
             {/* <button onClick={() => downloadImage()}>Download</button> */}
           </div>
         </div>
-      )}
+     
     </div>
   );
 }
