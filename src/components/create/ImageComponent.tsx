@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useImage } from "@/store/ImagesStore";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { useSidebar } from "@/store/SidebarStore";
 
 export interface ImageComponentProps {
   onHover: boolean;
@@ -28,23 +29,21 @@ function ImageComponent({
     dColumnImages,
   } = useImage();
 
+  const {alignment} = useSidebar();
+
   return (
-    <motion.div
-      className="relative flex justify-center items-center"
-      
-      layout
-    >
+    <motion.div className="relative flex items-center justify-center" layout>
       <img
         key={col}
         src={col}
         alt="Example image"
-        className={`max-h-[100px] max-w-[100px] rounded-lg ${onHover ? " brightness-[0.9]" : ""}`}
+        className={`${alignment === "flex flex-col" ? "max-h-[100px] max-w-[100px]" : "max-h-[200px] max-w-[200px]"} rounded-lg ${onHover ? " brightness-[0.9]" : ""}`}
       />
       {onHover && (
         <motion.div
           initial={{ scale: 0.4 }}
           whileInView={{ scale: 1 }}
-          className="absolute cursor-pointer rounded-full bg-gray-200 p-2 hover:bg-transparent hover:border-2 hover:border-red-500"
+          className="absolute cursor-pointer rounded-full bg-gray-200 p-2 hover:border-2 hover:border-red-500 hover:bg-transparent"
           onClick={() => {
             switch (columnName) {
               case "a":

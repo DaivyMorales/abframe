@@ -50,7 +50,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="w-full min-w-[300px] rounded-t-2xl border-l-[1px] border-neutral-700 bg-[#242424] p-5 pb-3 md:h-full md:w-[150px] md:rounded-[0px]">
+    <div className="w-full min-w-[300px] pb-3 rounded-t-2xl border-l-[1px] border-neutral-700 bg-black p-5 pb-3 md:h-full md:w-[150px] md:rounded-[0px]">
       <div className="custom-scrollbar flex max-h-[300px] flex-col items-start justify-start gap-4 overflow-y-scroll sm:grid sm:grid-cols-2 md:flex md:max-h-[780px] md:flex-col">
         {/* TITLE */}
         <div className="flex flex-col items-start justify-start gap-2">

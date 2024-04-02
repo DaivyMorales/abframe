@@ -64,7 +64,7 @@ function CreatePage() {
   }, [ref]);
 
   return (
-    <div className="flex h-[727px] w-full flex-col items-start justify-between gap-2 bg-neutral-400 md:flex-row">
+    <div className="flex h-[727px] w-full flex-col items-start justify-between gap-2 bg-[#1E1A25] md:flex-row">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3 ">
         <div className="flex h-[50px] w-full items-center justify-center   border-neutral-700  px-2 py-8">
           <motion.button

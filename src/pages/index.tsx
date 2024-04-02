@@ -11,6 +11,7 @@ import { CgSpinner } from "react-icons/cg";
 import Head from "next/head";
 import ABComparison from "@/components/landing/ABComparison";
 import { useMediaQuery } from "react-responsive";
+import { useRouter } from "next/router";
 
 function Home() {
   const [loadingRequest, setloadingRequest] = useState(false);
@@ -21,9 +22,11 @@ function Home() {
 
   const mutation = api.waitlist.create.useMutation();
 
-  useEffect(() => {
-    divRef.current!.focus();
-  }, []);
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   divRef.current!.focus();
+  // }, []);
 
   const isDesktop = useMediaQuery({ maxWidth: 1280 });
 
@@ -61,7 +64,7 @@ function Home() {
         <title>ABFrame - Waitlist</title>
       </Head>
 
-      <div className="grid min-h-full w-full grid-cols-1 flex-col gap-8  bg-[#1D1D1D] xl:grid-cols-2">
+      <div className="grid min-h-full w-full grid-cols-1 flex-col gap-8  xl:grid-cols-2">
         {statusResponseWaitlist === 200 && !errorMessage ? (
           <Confetti
             width={width}
@@ -85,58 +88,15 @@ function Home() {
             </h3>
           </div>
           <div className="flex flex-col items-center justify-start gap-16">
-            <form
-              onSubmit={formik.handleSubmit}
-              className="flex flex-col gap-2"
+            <motion.button
+              onClick={() => router.push("/create")}
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={`${statusResponseWaitlist === 200 ? "cursor-not-allowed bg-[#212121]" : "bg-emerald-400"} flex h-[50px] w-full items-center justify-center gap-3 rounded-md px-7 py-3 text-[15px] font-semibold text-[#141616] text-white shadow-sm`}
             >
-              <div
-                ref={divRef}
-                className="focus-div flex w-[250px] items-center justify-center gap-2 rounded-md border-[1px] border-slate-600 px-3 py-3"
-                style={
-                  statusResponseWaitlist === 200
-                    ? { borderColor: "#059669" }
-                    : errorMessage
-                      ? { borderColor: "red" }
-                      : {}
-                }
-              >
-                <HiMail size={15} />
-                <input
-                  name="email"
-                  onChange={(e) => {
-                    formik.setFieldValue("email", e.target.value);
-                    setErrorMessage("");
-                  }}
-                  type="email"
-                  placeholder="youremail@abframe.com"
-                  className="placeholder:text-slate-500"
-                />
-              </div>
-              {errorMessage && (
-                <p className="text-xs text-red-500">{errorMessage}</p>
-              )}
-
-              <motion.button
-                initial={{ scale: 1 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.8 }}
-                type="submit"
-                className={`${statusResponseWaitlist === 200 ? "cursor-not-allowed bg-[#212121]" : "bg-emerald-400"} flex h-[50px] w-full items-center justify-center gap-3 rounded-md px-7 py-3 text-[15px] font-semibold text-[#141616] text-white shadow-sm`}
-                disabled={statusResponseWaitlist === 200}
-              >
-                {loadingRequest ? (
-                  <div className="animate-spin">
-                    <CgSpinner size={20} />
-                  </div>
-                ) : errorMessage.length > 0 ? (
-                  "Join waitlist"
-                ) : statusResponseWaitlist === 200 ? (
-                  <HiCheck />
-                ) : (
-                  "Join waitlist"
-                )}
-              </motion.button>
-            </form>
+              Create my A/B picture
+            </motion.button>
             {/* ME */}
             <section className="flex gap-3">
               <Link href={"https://twitter.com/_joaooo0_"} target="_blank">
@@ -166,7 +126,7 @@ function Home() {
             </section>
           </div>
           {isDesktop && (
-            <div className="absolute -bottom-32 sm:-bottom-10 flex flex-col items-center justify-center gap-2">
+            <div className="absolute -bottom-32 flex flex-col items-center justify-center gap-2 sm:-bottom-10">
               <p className="text-sm font-semibold">Look an example!</p>
               <HiOutlineChevronDoubleDown size={30} />
             </div>

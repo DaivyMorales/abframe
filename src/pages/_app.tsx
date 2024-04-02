@@ -36,7 +36,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           rel="stylesheet"
         />
       </Head>
-      <main className={gabarito.className}>
+      <main className={inter.className}>
         <Navbar>
           <Component {...pageProps} />
         </Navbar>
