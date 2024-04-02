@@ -6,7 +6,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        gabarito: ["Gabarito", ...fontFamily.sans],
+        inter: ["Inter", ...fontFamily.sans],
+        lato: ["Lato", ...fontFamily.sans],
       },
     },
   },
